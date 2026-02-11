@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FactoryMethod Pattern</title>
+  <link rel="stylesheet" href="../tutorial.css" />
+</head>
+<body>
+  <header>
+    <span class="tag">Design Pattern</span>
+    <h1>FactoryMethod</h1>
+    <p>Also known as: Virtual Constructor</p>
+    <div class="lang-switch">
+      <span class="lang-pill">English</span>
+      <a href="tutorial-pt.html" data-lang="pt">Português</a>
+      <a href="../tutorials.html" class="index-link">Back to index</a>
+    </div>
+  </header>
+  <main class="tutorial">
+    <section class="card toc">
+      <h2>Contents</h2>
+      <ul>
+        <li><a href="#intent">Intent</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#structure">Structure</a></li>
+        <li><a href="#examples">Examples in this project</a></li>
+        <li><a href="#applicability">Applicability</a></li>
+        <li><a href="#solid">SOLID alignment</a></li>
+        <li><a href="#pros-cons">Pros & Cons</a></li>
+        <li><a href="#diagram">Diagram (text)</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </section>
+
+    <div class="content">
+<section id="intent" class="card">
+      <h2>Intent</h2>
+      <p>Define an interface for creating an object, but let subclasses decide which class to instantiate.</p>
+    </section>
+
+    <section id="problem" class="card">
+      <h2>Problem</h2>
+      <p>Client code needs different variants of a product, but should not depend on concrete types.</p>
+    </section>
+
+    <section id="solution" class="card">
+      <h2>Solution</h2>
+      <p>Introduce a factory method that returns a product interface. Concrete factories decide which implementation to create.</p>
+    </section>
+
+    <section id="structure" class="card">
+      <h2>Structure</h2>
+      <ul>
+        <li>The `BadgeShape` protocol defines the product interface.</li>
+<li>Concrete products implement shape details (circle, square).</li>
+<li>Factories expose `makeBadge()` and return a `BadgeShape`.</li>
+      </ul>
+    </section>
+
+    <section id="examples" class="card">
+      <h2>Examples in this project</h2>
+      <div class="grid">
+        <div>
+          <h3>Swift</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Sources/PatternsIOS/Patterns/FactoryMethod/Swift/FactoryMethod.swift"><code>Sources/PatternsIOS/Patterns/FactoryMethod/Swift/FactoryMethod.swift</code></a></p>
+        </div>
+        <div>
+          <h3>SwiftUI</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Sources/PatternsIOS/Patterns/FactoryMethod/SwiftUI/FactoryMethodView.swift"><code>Sources/PatternsIOS/Patterns/FactoryMethod/SwiftUI/FactoryMethodView.swift</code></a></p>
+        </div>
+        <div>
+          <h3>Unit Test</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Tests/PatternsIOSTests/Patterns/FactoryMethodTests.swift"><code>Tests/PatternsIOSTests/Patterns/FactoryMethodTests.swift</code></a></p>
+        </div>
+      </div>
+      <h3>How to try it</h3>
+      <p>Open Factory Method in the app to see the badge created by the factory.</p>
+    </section>
+
+    <section id="applicability" class="card">
+      <h2>Applicability</h2>
+      <ul>
+        <li>When product creation varies by configuration or environment.</li>
+<li>When you want to decouple construction from usage.</li>
+      </ul>
+    </section>
+    <section id="solid" class="card">
+      <h2>SOLID alignment</h2>
+      <ul>
+        <li><strong>OCP</strong>: add new product types via new factories without changing client code.</li>
+        <li><strong>DIP</strong>: clients depend on the <code>BadgeShape</code> / <code>BadgeFactory</code> abstractions.</li>
+      </ul>
+    </section>
+
+
+    <section id="pros-cons" class="card">
+      <h2>Pros & Cons</h2>
+      <div class="grid">
+        <div>
+          <h3>Pros</h3>
+          <ul>
+            <li>Reduces coupling to concrete classes.</li>
+<li>Creation logic is centralized in factories.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cons</h3>
+          <ul>
+            <li>Adds extra types (factories).</li>
+<li>Small systems may not need the indirection.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagram" class="card">
+      <h2>Diagram (text)</h2>
+      <pre>+---------+      +-----------------+
+| Client  | ---> | BadgeFactory    |
++---------+      +-----------------+
+                      | makeBadge()
+                      v
+                +-------------+
+                | BadgeShape  |
+                +-------------+
+                 ^        ^
++---------------------+  +---------------------+
+| CircleBadgeFactory  |  | SquareBadgeFactory  |
++---------------------+  +---------------------+</pre>
+    </section>
+
+    <section id="references" class="card">
+      <h2>References</h2>
+      <ul>
+        <li><a href="https://refactoring.guru/design-patterns/factory-method">Refactoring.Guru</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Factory_method_pattern">Wikipedia</a></li>
+      </ul>
+    </section>
+      </div>
+</main>
+<script>
+(function() {
+  var currentLang = 'en';
+  var preferred = localStorage.getItem('patterns_lang');
+  var alternate = 'tutorial-pt.html';
+  if (preferred && preferred !== currentLang) {
+    window.location.replace(alternate);
+    return;
+  }
+  var links = document.querySelectorAll('[data-lang]');
+  links.forEach(function(link) {
+    link.addEventListener('click', function() {
+      localStorage.setItem('patterns_lang', link.getAttribute('data-lang'));
+    });
+  });
+})();
+</script>
+</body>
+</html>

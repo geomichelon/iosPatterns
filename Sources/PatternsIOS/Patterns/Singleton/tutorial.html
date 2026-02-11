@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Singleton Pattern</title>
+  <link rel="stylesheet" href="../tutorial.css" />
+</head>
+<body>
+  <header>
+    <span class="tag">Design Pattern</span>
+    <h1>Singleton</h1>
+    <p>Also known as: Global Instance</p>
+    <div class="lang-switch">
+      <span class="lang-pill">English</span>
+      <a href="tutorial-pt.html" data-lang="pt">Português</a>
+      <a href="../tutorials.html" class="index-link">Back to index</a>
+    </div>
+  </header>
+  <main class="tutorial">
+    <section class="card toc">
+      <h2>Contents</h2>
+      <ul>
+        <li><a href="#intent">Intent</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#structure">Structure</a></li>
+        <li><a href="#examples">Examples in this project</a></li>
+        <li><a href="#applicability">Applicability</a></li>
+        <li><a href="#solid">SOLID alignment</a></li>
+        <li><a href="#pros-cons">Pros & Cons</a></li>
+        <li><a href="#diagram">Diagram (text)</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </section>
+
+    <div class="content">
+<section id="intent" class="card">
+      <h2>Intent</h2>
+      <p>Ensure a class has only one instance and provide a global access point to it.</p>
+    </section>
+
+    <section id="problem" class="card">
+      <h2>Problem</h2>
+      <p>Multiple parts of an app need consistent configuration. Passing the same instance everywhere becomes noisy and error‑prone.</p>
+    </section>
+
+    <section id="solution" class="card">
+      <h2>Solution</h2>
+      <p>Centralize the configuration in a single object and expose a shared instance. Prevent external construction to enforce uniqueness.</p>
+    </section>
+
+    <section id="structure" class="card">
+      <h2>Structure</h2>
+      <ul>
+        <li>Client code accesses `AppConfig.shared` instead of creating new instances.</li>
+<li>The singleton stores shared mutable state such as base URLs and feature flags.</li>
+<li>Tests can reset the singleton to a known state.</li>
+      </ul>
+    </section>
+
+    <section id="examples" class="card">
+      <h2>Examples in this project</h2>
+      <div class="grid">
+        <div>
+          <h3>Swift</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Sources/PatternsIOS/Patterns/Singleton/Swift/Singleton.swift"><code>Sources/PatternsIOS/Patterns/Singleton/Swift/Singleton.swift</code></a></p>
+        </div>
+        <div>
+          <h3>SwiftUI</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Sources/PatternsIOS/Patterns/Singleton/SwiftUI/AppConfigView.swift"><code>Sources/PatternsIOS/Patterns/Singleton/SwiftUI/AppConfigView.swift</code></a></p>
+        </div>
+        <div>
+          <h3>Unit Test</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Tests/PatternsIOSTests/Patterns/SingletonTests.swift"><code>Tests/PatternsIOSTests/Patterns/SingletonTests.swift</code></a></p>
+        </div>
+      </div>
+      <h3>How to try it</h3>
+      <p>Open the app and navigate to Singleton. Change values and tap Save.</p>
+    </section>
+
+    <section id="applicability" class="card">
+      <h2>Applicability</h2>
+      <ul>
+        <li>Global configuration that must be consistent across the app.</li>
+<li>Shared caches or telemetry/logging pipelines.</li>
+<li>Be cautious when dependency injection can provide better testability.</li>
+      </ul>
+    </section>
+    <section id="solid" class="card">
+      <h2>SOLID alignment</h2>
+      <ul>
+        <li><strong>SRP</strong>: works when the singleton has a single, narrow responsibility (e.g., app configuration).</li>
+        <li><strong>DIP</strong>: often violated because clients depend on a global concrete instance; use cautiously.</li>
+      </ul>
+    </section>
+
+
+    <section id="pros-cons" class="card">
+      <h2>Pros & Cons</h2>
+      <div class="grid">
+        <div>
+          <h3>Pros</h3>
+          <ul>
+            <li>Single source of truth for shared state.</li>
+<li>Easy access from anywhere in the codebase.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cons</h3>
+          <ul>
+            <li>Global state can make tests harder if not reset.</li>
+<li>Can hide dependencies and increase coupling.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagram" class="card">
+      <h2>Diagram (text)</h2>
+      <pre>+---------+        +--------------------+
+| Client  | -----> | AppConfig.shared   |
++---------+        +--------------------+
+                         |
+                         v
+                   +-----------+
+                   | AppConfig |
+                   +-----------+</pre>
+    </section>
+
+    <section id="references" class="card">
+      <h2>References</h2>
+      <ul>
+        <li><a href="https://refactoring.guru/design-patterns/singleton">Refactoring.Guru</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Singleton_pattern">Wikipedia</a></li>
+      </ul>
+    </section>
+      </div>
+</main>
+<script>
+(function() {
+  var currentLang = 'en';
+  var preferred = localStorage.getItem('patterns_lang');
+  var alternate = 'tutorial-pt.html';
+  if (preferred && preferred !== currentLang) {
+    window.location.replace(alternate);
+    return;
+  }
+  var links = document.querySelectorAll('[data-lang]');
+  links.forEach(function(link) {
+    link.addEventListener('click', function() {
+      localStorage.setItem('patterns_lang', link.getAttribute('data-lang'));
+    });
+  });
+})();
+</script>
+</body>
+</html>

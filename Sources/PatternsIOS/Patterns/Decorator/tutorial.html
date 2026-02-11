@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Decorator Pattern</title>
+  <link rel="stylesheet" href="../tutorial.css" />
+</head>
+<body>
+  <header>
+    <span class="tag">Design Pattern</span>
+    <h1>Decorator</h1>
+    <p>Also known as: Wrapper</p>
+    <div class="lang-switch">
+      <span class="lang-pill">English</span>
+      <a href="tutorial-pt.html" data-lang="pt">Português</a>
+      <a href="../tutorials.html" class="index-link">Back to index</a>
+    </div>
+  </header>
+  <main class="tutorial">
+    <section class="card toc">
+      <h2>Contents</h2>
+      <ul>
+        <li><a href="#intent">Intent</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#structure">Structure</a></li>
+        <li><a href="#examples">Examples in this project</a></li>
+        <li><a href="#applicability">Applicability</a></li>
+        <li><a href="#solid">SOLID alignment</a></li>
+        <li><a href="#pros-cons">Pros & Cons</a></li>
+        <li><a href="#diagram">Diagram (text)</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </section>
+
+    <div class="content">
+<section id="intent" class="card">
+      <h2>Intent</h2>
+      <p>Attach additional responsibilities to an object dynamically without changing its class.</p>
+    </section>
+
+    <section id="problem" class="card">
+      <h2>Problem</h2>
+      <p>Combining features via inheritance can explode into too many subclasses.</p>
+    </section>
+
+    <section id="solution" class="card">
+      <h2>Solution</h2>
+      <p>Wrap a base component with decorator objects that add behavior incrementally.</p>
+    </section>
+
+    <section id="structure" class="card">
+      <h2>Structure</h2>
+      <ul>
+        <li>`Beverage` defines the component interface.</li>
+<li>Decorators wrap another `Beverage` and extend it.</li>
+<li>Multiple decorators can be composed in any order.</li>
+      </ul>
+    </section>
+
+    <section id="examples" class="card">
+      <h2>Examples in this project</h2>
+      <div class="grid">
+        <div>
+          <h3>Swift</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Sources/PatternsIOS/Patterns/Decorator/Swift/Decorator.swift"><code>Sources/PatternsIOS/Patterns/Decorator/Swift/Decorator.swift</code></a></p>
+        </div>
+        <div>
+          <h3>SwiftUI</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Sources/PatternsIOS/Patterns/Decorator/SwiftUI/CoffeeOrderView.swift"><code>Sources/PatternsIOS/Patterns/Decorator/SwiftUI/CoffeeOrderView.swift</code></a></p>
+        </div>
+        <div>
+          <h3>Unit Test</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Tests/PatternsIOSTests/Patterns/DecoratorTests.swift"><code>Tests/PatternsIOSTests/Patterns/DecoratorTests.swift</code></a></p>
+        </div>
+      </div>
+      <h3>How to try it</h3>
+      <p>Open Decorator in the app and toggle add-ons to see the result.</p>
+    </section>
+
+    <section id="applicability" class="card">
+      <h2>Applicability</h2>
+      <ul>
+        <li>When behavior needs to be combined at runtime.</li>
+<li>Alternative to deep inheritance hierarchies.</li>
+      </ul>
+    </section>
+    <section id="solid" class="card">
+      <h2>SOLID alignment</h2>
+      <ul>
+        <li><strong>OCP</strong>: behavior is extended by composition instead of changing existing classes.</li>
+        <li><strong>LSP</strong>: decorators conform to the same interface as the component.</li>
+      </ul>
+    </section>
+
+
+    <section id="pros-cons" class="card">
+      <h2>Pros & Cons</h2>
+      <div class="grid">
+        <div>
+          <h3>Pros</h3>
+          <ul>
+            <li>Composable behavior with small, reusable decorators.</li>
+<li>Avoids rigid inheritance chains.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cons</h3>
+          <ul>
+            <li>Harder to understand with many nested decorators.</li>
+<li>Debugging can be more complex.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagram" class="card">
+      <h2>Diagram (text)</h2>
+      <pre>+-------------+
+| Beverage    |
++-------------+
+      ^
++-------------+   wraps   +---------------+   wraps   +--------------+
+| SimpleCoffee| <-------  | MilkDecorator | <-------  | WhipDecorator|
++-------------+           +---------------+           +--------------+</pre>
+    </section>
+
+    <section id="references" class="card">
+      <h2>References</h2>
+      <ul>
+        <li><a href="https://refactoring.guru/design-patterns/decorator">Refactoring.Guru</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Decorator_pattern">Wikipedia</a></li>
+      </ul>
+    </section>
+      </div>
+</main>
+<script>
+(function() {
+  var currentLang = 'en';
+  var preferred = localStorage.getItem('patterns_lang');
+  var alternate = 'tutorial-pt.html';
+  if (preferred && preferred !== currentLang) {
+    window.location.replace(alternate);
+    return;
+  }
+  var links = document.querySelectorAll('[data-lang]');
+  links.forEach(function(link) {
+    link.addEventListener('click', function() {
+      localStorage.setItem('patterns_lang', link.getAttribute('data-lang'));
+    });
+  });
+})();
+</script>
+</body>
+</html>

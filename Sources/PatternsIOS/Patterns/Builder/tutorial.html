@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Builder Pattern</title>
+  <link rel="stylesheet" href="../tutorial.css" />
+</head>
+<body>
+  <header>
+    <span class="tag">Design Pattern</span>
+    <h1>Builder</h1>
+    <p>Also known as: Fluent Builder</p>
+    <div class="lang-switch">
+      <span class="lang-pill">English</span>
+      <a href="tutorial-pt.html" data-lang="pt">Português</a>
+      <a href="../tutorials.html" class="index-link">Back to index</a>
+    </div>
+  </header>
+  <main class="tutorial">
+    <section class="card toc">
+      <h2>Contents</h2>
+      <ul>
+        <li><a href="#intent">Intent</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#structure">Structure</a></li>
+        <li><a href="#examples">Examples in this project</a></li>
+        <li><a href="#applicability">Applicability</a></li>
+        <li><a href="#solid">SOLID alignment</a></li>
+        <li><a href="#pros-cons">Pros & Cons</a></li>
+        <li><a href="#diagram">Diagram (text)</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </section>
+
+    <div class="content">
+<section id="intent" class="card">
+      <h2>Intent</h2>
+      <p>Separate the construction of a complex object from its representation so the same process can create different representations.</p>
+    </section>
+
+    <section id="problem" class="card">
+      <h2>Problem</h2>
+      <p>A request object has many optional parameters, leading to noisy initializers and errors.</p>
+    </section>
+
+    <section id="solution" class="card">
+      <h2>Solution</h2>
+      <p>Use a builder to collect configuration step by step and produce an immutable request at the end.</p>
+    </section>
+
+    <section id="structure" class="card">
+      <h2>Structure</h2>
+      <ul>
+        <li>`RequestBuilder` stores partial configuration with defaults.</li>
+<li>Fluent setters mutate the builder and return `self`.</li>
+<li>`build()` produces a `NetworkRequest`.</li>
+      </ul>
+    </section>
+
+    <section id="examples" class="card">
+      <h2>Examples in this project</h2>
+      <div class="grid">
+        <div>
+          <h3>Swift</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Sources/PatternsIOS/Patterns/Builder/Swift/Builder.swift"><code>Sources/PatternsIOS/Patterns/Builder/Swift/Builder.swift</code></a></p>
+        </div>
+        <div>
+          <h3>SwiftUI</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Sources/PatternsIOS/Patterns/Builder/SwiftUI/RequestPreviewView.swift"><code>Sources/PatternsIOS/Patterns/Builder/SwiftUI/RequestPreviewView.swift</code></a></p>
+        </div>
+        <div>
+          <h3>Unit Test</h3>
+          <p>File: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Tests/PatternsIOSTests/Patterns/BuilderTests.swift"><code>Tests/PatternsIOSTests/Patterns/BuilderTests.swift</code></a></p>
+        </div>
+      </div>
+      <h3>How to try it</h3>
+      <p>Open Builder in the app to see the sample request created by the builder.</p>
+    </section>
+
+    <section id="applicability" class="card">
+      <h2>Applicability</h2>
+      <ul>
+        <li>Objects with many optional fields.</li>
+<li>When you want readable, chained configuration.</li>
+      </ul>
+    </section>
+    <section id="solid" class="card">
+      <h2>SOLID alignment</h2>
+      <ul>
+        <li><strong>SRP</strong>: separates construction logic from the final object representation.</li>
+        <li><strong>OCP</strong>: new builders/configurations can be introduced without changing client code.</li>
+      </ul>
+    </section>
+
+
+    <section id="pros-cons" class="card">
+      <h2>Pros & Cons</h2>
+      <div class="grid">
+        <div>
+          <h3>Pros</h3>
+          <ul>
+            <li>Improves readability for complex construction.</li>
+<li>Keeps the final object immutable.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cons</h3>
+          <ul>
+            <li>More types and boilerplate.</li>
+<li>Overkill for simple objects.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagram" class="card">
+      <h2>Diagram (text)</h2>
+      <pre>+---------+      +-----------------+
+| Client  | ---> | RequestBuilder  |
++---------+      +-----------------+
+                      | build()
+                      v
+                +---------------+
+                | NetworkRequest|
+                +---------------+</pre>
+    </section>
+
+    <section id="references" class="card">
+      <h2>References</h2>
+      <ul>
+        <li><a href="https://refactoring.guru/design-patterns/builder">Refactoring.Guru</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Builder_pattern">Wikipedia</a></li>
+      </ul>
+    </section>
+      </div>
+</main>
+<script>
+(function() {
+  var currentLang = 'en';
+  var preferred = localStorage.getItem('patterns_lang');
+  var alternate = 'tutorial-pt.html';
+  if (preferred && preferred !== currentLang) {
+    window.location.replace(alternate);
+    return;
+  }
+  var links = document.querySelectorAll('[data-lang]');
+  links.forEach(function(link) {
+    link.addEventListener('click', function() {
+      localStorage.setItem('patterns_lang', link.getAttribute('data-lang'));
+    });
+  });
+})();
+</script>
+</body>
+</html>

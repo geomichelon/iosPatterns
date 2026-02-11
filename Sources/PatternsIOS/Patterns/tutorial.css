@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap");
+
+:root {
+  --bg: #f5f1ea;
+  --card: #ffffff;
+  --ink: #1b1a19;
+  --muted: #5f5a55;
+  --accent: #0f766e;
+  --accent-strong: #0c4a44;
+  --border: #e1dbd0;
+  --shadow: rgba(24, 24, 27, 0.08);
+  --soft: #fdf9f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Space Grotesk", "Avenir Next", "Avenir", "Helvetica Neue", sans-serif;
+  background: var(--bg);
+  background-image: radial-gradient(circle at 10% 10%, #fff7e6 0, transparent 45%),
+    radial-gradient(circle at 90% 0, #e3f9f1 0, transparent 45%),
+    linear-gradient(180deg, #f7f2e8 0%, #f4f7f7 100%);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+header {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffffff, #f0f9ff);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 24px 32px;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  right: -120px;
+  top: -80px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(15, 118, 110, 0.2), transparent 70%);
+  border-radius: 50%;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  left: -140px;
+  bottom: -120px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.2), transparent 70%);
+  border-radius: 50%;
+}
+
+header h1 {
+  margin: 0 0 8px 0;
+  font-family: "Fraunces", "Georgia", serif;
+  font-size: 36px;
+  letter-spacing: -0.02em;
+}
+
+header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 10px 30px var(--shadow);
+}
+
+h2 {
+  margin-top: 0;
+  font-family: "Fraunces", "Georgia", serif;
+  font-size: 24px;
+}
+
+h3 {
+  margin-top: 18px;
+  font-size: 18px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code, pre {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  background: #f3f5f4;
+  border-radius: 6px;
+}
+
+a.file-link {
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+
+a.file-link:hover {
+  text-decoration: underline;
+}
+
+a.file-link code {
+  white-space: normal;
+  word-break: break-word;
+}
+
+pre {
+  padding: 12px 14px;
+  overflow-x: auto;
+  border: 1px solid #e2e6e4;
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc li {
+  margin-bottom: 6px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #e3f2f0;
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+
+.lang-switch {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.lang-switch a {
+  font-weight: 600;
+}
+
+.lang-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 12px;
+}
+
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--soft);
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+.lang-switch a {
+  cursor: pointer;
+}
+
+main.tutorial {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+main.tutorial .toc {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  background: var(--soft);
+  border-left: 4px solid var(--accent);
+  grid-column: 1;
+}
+
+main.tutorial .content {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+main.tutorial .content .card {
+  margin-bottom: 0;
+}
+
+main.tutorial .toc a {
+  color: var(--accent-strong);
+}
+
+@media (max-width: 900px) {
+  main.tutorial {
+    grid-template-columns: 1fr;
+  }
+
+  main.tutorial .toc {
+    position: static;
+    grid-column: 1;
+  }
+
+  main.tutorial .content {
+    grid-column: 1;
+  }
+}

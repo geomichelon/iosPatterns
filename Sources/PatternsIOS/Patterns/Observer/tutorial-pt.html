@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Observer Pattern</title>
+  <link rel="stylesheet" href="../tutorial.css" />
+</head>
+<body>
+  <header>
+    <span class="tag">Design Pattern</span>
+    <h1>Observer</h1>
+    <p>Tambem conhecido como: Event-Subscriber, Listener</p>
+    <div class="lang-switch">
+      <span class="lang-pill">Português</span>
+      <a href="tutorial.html" data-lang="en">English</a>
+      <a href="../tutorials-pt.html" class="index-link">Voltar ao indice</a>
+    </div>
+  </header>
+  <main class="tutorial">
+    <section class="card toc">
+      <h2>Conteudo</h2>
+      <ul>
+        <li><a href="#intent">Intencao</a></li>
+        <li><a href="#problem">Problema</a></li>
+        <li><a href="#solution">Solucao</a></li>
+        <li><a href="#structure">Estrutura</a></li>
+        <li><a href="#examples">Exemplos neste projeto</a></li>
+        <li><a href="#applicability">Aplicabilidade</a></li>
+        <li><a href="#solid">Cobertura de SOLID</a></li>
+        <li><a href="#pros-cons">Pros e Contras</a></li>
+        <li><a href="#diagram">Diagrama (texto)</a></li>
+        <li><a href="#references">Referencias</a></li>
+      </ul>
+    </section>
+
+    <div class="content">
+<section id="intent" class="card">
+      <h2>Intencao</h2>
+      <p>Definir uma dependencia um-para-muitos para que, ao mudar o estado, todos os dependentes sejam notificados.</p>
+    </section>
+
+    <section id="problem" class="card">
+      <h2>Problema</h2>
+      <p>Varias views ou servicos precisam de atualizacoes de um objeto central sem acoplamento forte.</p>
+    </section>
+
+    <section id="solution" class="card">
+      <h2>Solucao</h2>
+      <p>Introduza uma interface de observador e um mecanismo de inscricao para registrar e notificar observadores.</p>
+    </section>
+
+    <section id="structure" class="card">
+      <h2>Estrutura</h2>
+      <ul>
+        <li>`WeatherStation` atua como publisher.</li>
+<li>Observadores implementam `WeatherObserver`.</li>
+<li>Atualizacoes sao enviadas a todos os inscritos.</li>
+      </ul>
+    </section>
+
+    <section id="examples" class="card">
+      <h2>Exemplos neste projeto</h2>
+      <div class="grid">
+        <div>
+          <h3>Swift</h3>
+          <p>Arquivo: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Sources/PatternsIOS/Patterns/Observer/Swift/Observer.swift"><code>Sources/PatternsIOS/Patterns/Observer/Swift/Observer.swift</code></a></p>
+        </div>
+        <div>
+          <h3>SwiftUI</h3>
+          <p>Arquivo: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Sources/PatternsIOS/Patterns/Observer/SwiftUI/WeatherStationView.swift"><code>Sources/PatternsIOS/Patterns/Observer/SwiftUI/WeatherStationView.swift</code></a></p>
+        </div>
+        <div>
+          <h3>Teste unitario</h3>
+          <p>Arquivo: <a class="file-link" href="https://github.com/geomichelon/iosPatterns/blob/main/Tests/PatternsIOSTests/Patterns/ObserverTests.swift"><code>Tests/PatternsIOSTests/Patterns/ObserverTests.swift</code></a></p>
+        </div>
+      </div>
+      <h3>Como testar</h3>
+      <p>Abra Observer no app e toque em Refresh para emitir nova temperatura.</p>
+    </section>
+
+    <section id="applicability" class="card">
+      <h2>Aplicabilidade</h2>
+      <ul>
+        <li>Atualizacoes de UI guiadas por mudancas de estado.</li>
+<li>Sistemas de eventos e notificacoes.</li>
+      </ul>
+    </section>
+    <section id="solid" class="card">
+      <h2>Cobertura de SOLID</h2>
+      <ul>
+        <li><strong>OCP</strong>: novos observadores podem ser adicionados sem mudar o sujeito.</li>
+        <li><strong>DIP</strong>: sujeito e observadores dependem da abstracao <code>WeatherObserver</code>.</li>
+      </ul>
+    </section>
+
+
+    <section id="pros-cons" class="card">
+      <h2>Pros e Contras</h2>
+      <div class="grid">
+        <div>
+          <h3>Pros</h3>
+          <ul>
+            <li>Baixo acoplamento entre publisher e inscritos.</li>
+<li>Inscricao e cancelamento dinamicos.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contras</h3>
+          <ul>
+            <li>Ordem das notificacoes nao e garantida.</li>
+<li>Exige cuidado com ciclo de vida.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagram" class="card">
+      <h2>Diagrama (texto)</h2>
+      <pre>+-----------+        +----------------+
+| ObserverA | <----> | WeatherStation |
++-----------+        +----------------+
++-----------+               |
+| ObserverB | <-------------+
++-----------+     notify()</pre>
+    </section>
+
+    <section id="references" class="card">
+      <h2>Referencias</h2>
+      <ul>
+        <li><a href="https://refactoring.guru/design-patterns/observer">Refactoring.Guru</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Observer_pattern">Wikipedia</a></li>
+      </ul>
+    </section>
+      </div>
+</main>
+<script>
+(function() {
+  var currentLang = 'pt';
+  var preferred = localStorage.getItem('patterns_lang');
+  var alternate = 'tutorial.html';
+  if (preferred && preferred !== currentLang) {
+    window.location.replace(alternate);
+    return;
+  }
+  var links = document.querySelectorAll('[data-lang]');
+  links.forEach(function(link) {
+    link.addEventListener('click', function() {
+      localStorage.setItem('patterns_lang', link.getAttribute('data-lang'));
+    });
+  });
+})();
+</script>
+</body>
+</html>

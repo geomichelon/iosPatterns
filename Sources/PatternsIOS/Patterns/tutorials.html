@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design Patterns Tutorials</title>
+  <link rel="stylesheet" href="tutorial.css" />
+</head>
+<body>
+  <header>
+    <span class="tag">Design Patterns</span>
+    <h1>Patterns Tutorials</h1>
+    <p>HTML guides for the design patterns implemented in this project.</p>
+    <div class="lang-switch">
+      <span class="lang-pill">English</span>
+      <a href="tutorials-pt.html" data-lang="pt">Português</a>
+    </div>
+  </header>
+  <main>
+    <section class="card">
+      <h2>Creational</h2>
+      <ul>
+        <li><a href="Singleton/tutorial.html">Singleton</a></li>
+        <li><a href="FactoryMethod/tutorial.html">Factory Method</a></li>
+        <li><a href="Builder/tutorial.html">Builder</a></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Behavioral</h2>
+      <ul>
+        <li><a href="Observer/tutorial.html">Observer</a></li>
+        <li><a href="Strategy/tutorial.html">Strategy</a></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Structural</h2>
+      <ul>
+        <li><a href="Decorator/tutorial.html">Decorator</a></li>
+        <li><a href="Adapter/tutorial.html">Adapter</a></li>
+      </ul>
+    </section>
+  </main>
+<script>
+(function() {
+  var preferred = localStorage.getItem('patterns_lang');
+  if (preferred === 'pt') {
+    window.location.replace('tutorials-pt.html');
+    return;
+  }
+  var link = document.querySelector('[data-lang]');
+  if (link) {
+    link.addEventListener('click', function() {
+      localStorage.setItem('patterns_lang', 'pt');
+    });
+  }
+})();
+</script>
+</body>
+</html>
